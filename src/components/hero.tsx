@@ -1,53 +1,46 @@
-import { ArrowUpRight, CirclePlay } from "lucide-react";
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import { Logo01, Logo02, Logo03, Logo04 } from "./logos";
 
-export default function Hero() {
+const Hero = () => {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
-      <AnimatedGridPattern
-        className={cn(
-          "mask-[radial-gradient(500px_circle_at_center,white,transparent)]",
-          "inset-x-0 h-full skew-y-12"
-        )}
-        duration={3}
-        maxOpacity={0.1}
-        numSquares={30}
-      />
-      <div className="relative z-10 max-w-3xl text-center">
-        <Badge
-          asChild
-          className="rounded-full border-border py-1"
-          variant="secondary"
-        >
-          <Link href="#">
-            Just released v1.0.0 <ArrowUpRight className="ml-1 size-4" />
-          </Link>
-        </Badge>
-        <h1 className="mt-6 font-semibold text-4xl tracking-tighter sm:text-5xl md:text-6xl md:leading-[1.2] lg:text-7xl">
-          Customized Shadcn UI Blocks & Components
-        </h1>
-        <p className="mt-6 text-foreground/80 md:text-lg">
-          Explore a collection of Shadcn UI blocks and components, ready to
-          preview and copy. Streamline your development workflow with
-          easy-to-implement examples.
+    <div>
+
+      <div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-12 text-center">
+        <h2 className="text-balance font-medium text-4xl leading-[1.4] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          Beautifully Designed{" "}
+          <span className="inline-block rounded-md bg-primary px-1.5 py-0.5 text-primary-foreground leading-[1.1] tracking-tight sm:rounded-lg sm:px-3.5">
+            Premium
+          </span>{" "}
+          Shadcn Blocks
+        </h2>
+        <p className="mt-6 text-balance text-center text-muted-foreground text-xl tracking-normal sm:text-2xl sm:leading-normal md:text-3xl">
+          A collection of beautifully designed components that you can use to
+          build your next project.
         </p>
-        <div className="mt-12 flex items-center justify-center gap-4">
-          <Button className="rounded-full text-base" size="lg">
-            Get Started <ArrowUpRight className="h-5! w-5!" />
+        <div className="mx-auto mt-10 flex w-full max-w-xs flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button className="w-full sm:w-auto" size="lg">
+            Get Started <ArrowUpRight />
           </Button>
-          <Button
-            className="rounded-full text-base shadow-none"
-            size="lg"
-            variant="outline"
-          >
-            <CirclePlay className="h-5! w-5!" /> Watch Demo
+          <Button className="w-full sm:w-auto" size="lg" variant="outline">
+            Learn More
           </Button>
+        </div>
+
+        <div className="mt-24 flex flex-col items-center gap-4">
+          <p className="font-medium text-muted-foreground text-xs uppercase">
+            Trusted by engineers at
+          </p>
+          <div className="mx-auto mt-4 grid max-w-screen-lg grid-cols-2 place-items-center gap-6 grayscale-100 sm:grid-cols-3 sm:gap-x-10 sm:gap-y-12 md:grid-cols-4">
+            <Logo01 className="h-7 sm:h-8" />
+            <Logo02 className="h-7 sm:h-8" />
+            <Logo03 className="h-7 sm:h-8" />
+            <Logo04 className="h-7 sm:h-8" />
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Hero;

@@ -9,30 +9,53 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
-export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
-  <NavigationMenu {...props}>
-    <NavigationMenuList className="data-[orientation=vertical]:-ms-2 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
-      <NavigationMenuItem>
-        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-          <Link href="#">Home</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-          <Link href="#">Blog</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-          <Link href="#">About</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-          <Link href="#">Contact Us</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-    </NavigationMenuList>
-  </NavigationMenu>
-);
+const links = [
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/contact",
+    label: "Contact",
+  },
+  {
+    href: "/category",
+    label: "Category",
+  },
+  {
+    href: "/about",
+    label: "About",
+  },
+];
+
+export const NavMenu = ({
+  className,
+  ...props
+}: ComponentProps<typeof NavigationMenu>) => {
+  const { orientation } = props;
+
+  return (
+    <NavigationMenu {...props}>
+      <NavigationMenuList
+        className={cn({
+          "flex-col items-start gap-4": orientation === "vertical",
+        })}
+      >
+        {links.map((link) => (
+          <NavigationMenuItem key={link.href}>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle({
+                className: cn({ "text-xl": orientation === "vertical" }),
+              })}
+            >
+              <Link href={link.href}>{link.label}</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+};
