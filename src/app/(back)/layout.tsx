@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {Sarabun } from "next/font/google";
 import "../globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -32,7 +33,7 @@ export default function DashboardLayout({
       <body
         className={`${sarabun.className} antialiased`}
       >
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );
